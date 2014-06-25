@@ -37,14 +37,15 @@ It allows you to easily create multiple clients pointing to different databases 
 4. Add the configuration needed to use the bundle:
 
         // config.yml
-        phpredis:
+        php_redis:
             class:
                 service_name:
-                    host:     'redis host'
+                    host:     127.0.0.1
                     port:     6379
-                    prefix:   'if any'
+                    prefix:   ''
                     database: 0
-                    auth:     'if any'
+                    timeout:  0
+                    auth:     null
                     skip_env: false
                 some_other_service:
                     host:      localhost
