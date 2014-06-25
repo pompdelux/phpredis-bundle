@@ -1,0 +1,26 @@
+{
+    "name": "pompdelux/phpredis-bundle",
+    "type": "symfony-bundle",
+    "description": "Adds phpredis to symfony.",
+    "keywords": ["phpredis", "redis", "symfony"],
+    "homepage": "https://github.com/pompdelux/phpredis-bundle",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Ulrik Nielsen",
+            "email": "un@bellcom.dk"
+        }
+    ],
+    "support": {
+        "issues": "https://github.com/pompdelux/phpredis-bundle/issues"
+    },
+    "require": {
+        "php": ">=5.5",
+        "ext-redis": "2.2.x"
+    },
+    "autoload": {
+        "psr-4": {
+            "Pompdelux\\PHPRedisBundle\\": ""
+        }
+    }
+}

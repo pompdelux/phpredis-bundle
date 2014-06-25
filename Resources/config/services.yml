@@ -1,0 +1,16 @@
+parameters:
+    pompdelux.phpredis.class: Pompdelux\PHPRedisBundle\Client\Redis
+    pompdelux.phpredis.logger.class: Pompdelux\PHPRedisBundle\Logger\Logger
+    pompdelux.phpredis.data_collector.class: Pompdelux\PHPRedisBundle\DataCollector\RedisDataCollector
+
+services:
+    pompdelux.phpredis:
+       class: %pompdelux.phpredis.class%
+    pompdelux.phpredis.logger:
+        class: %pompdelux.phpredis.logger.class%
+        arguments: [@logger]
+    pompdelux.phpredis.data_collector:
+        class: %pompdelux.phpredis.data_collector.class%
+        tags:
+            - { name: data_collector, template: 'PHPRedisBundle:Collector:redis', id: redis }
+        arguments: [@pompdelux.phpredis.logger]
