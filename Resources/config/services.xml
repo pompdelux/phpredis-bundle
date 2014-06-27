@@ -1,0 +1,23 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <parameters>
+        <parameter key="pdl.phpredis.class">Pompdelux\PHPRedisBundle\Client\PHPRedis</parameter>
+        <parameter key="pdl.phpredis.logger.class">Pompdelux\PHPRedisBundle\Logger\Logger</parameter>
+        <parameter key="pdl.phpredis.data_collector.class">Pompdelux\PHPRedisBundle\DataCollector\PHPRedisDataCollector</parameter>>
+    </parameters>
+
+    <services>
+        <services id="pdl.phpredis" class="%pdl.phpredis.class%"></services>
+        <services id="pdl.phpredis.logger" class="pdl.phpredis.logger.class">
+            <argument type="service" id="logger" />
+        </services>
+        <services id="pdl.phpredis.data_collector" class="%pdl.phpredis.data_collector.class%">
+            <argument type="service" id="pdl.phpredis.logger" />
+            <tag name="data_collector" template="PHPRedisBundle:Collector:phpredis" id="phpredis" />
+        </services>
+    </services>
+</container>
