@@ -61,7 +61,7 @@ Two things to note:
 ## Usage:
 
 ```php
-$redis = $this->container->get('pompdelux.phpredis.service_name');
+$redis = $this->container->get('pdl.phpredis.service_name');
 $redis->set('key', 'value');
 echo $redis->get('key');
 ```

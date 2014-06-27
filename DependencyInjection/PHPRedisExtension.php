@@ -27,14 +27,14 @@ class PHPRedisExtension extends Extension
         $config = $this->processConfiguration($config, $configs);
 
         foreach ($config['class'] as $name => $settings) {
-            $def = new Definition($container->getParameter('pompdelux.phpredis.class'));
+            $def = new Definition($container->getParameter('pdl.phpredis.class'));
             $def->setPublic(true);
             $def->setScope(ContainerInterface::SCOPE_CONTAINER);
             $def->addArgument($name);
             $def->addArgument($container->getParameter('kernel.environment'));
             $def->addArgument($settings);
-            $def->addMethodCall('setLogger', [new Reference('pompdelux.phpredis.logger')]);
-            $container->setDefinition(sprintf('pompdelux.phpredis.%s', $name), $def);
+            $def->addMethodCall('setLogger', [new Reference('pdl.phpredis.logger')]);
+            $container->setDefinition(sprintf('pdl.phpredis.%s', $name), $def);
         }
     }
 }

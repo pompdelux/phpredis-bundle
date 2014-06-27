@@ -15,12 +15,6 @@ use Pompdelux\PHPRedisBundle\Logger\Logger;
 class PHPRedis extends \Redis
 {
     /**
-     * Redis instance
-     * @var Redis
-     */
-    private $redis = null;
-
-    /**
      * Logger
      * @var Logger
      */
@@ -143,10 +137,9 @@ class PHPRedis extends \Redis
         }
 
 
-        $ts = microtime(true);
-
+        $ts     = microtime(true);
         $result = call_user_func_array('parent::'.$name, $arguments);
-        $ts = (microtime(true) - $ts) * 1000;
+        $ts     = (microtime(true) - $ts) * 1000;
 
         $isError = false;
         if ($error = $this->getLastError()) {
@@ -167,11 +160,22 @@ class PHPRedis extends \Redis
 
 
     /**
-     * Generate cache key
+     * Generate cache key from method arguments.
+     *
+     * Example:
+     * <code>
+     * // string arguments
+     * $key = $redis->generateKey('some', 'part', 'of', 'key'); // returns: "some:part:of:key"
+     *
+     * // array argument
+     * $key = $redis->generateKey(['some', 'part', 'of', 'key']); // returns: "some:part:of:key"
+     * </code>
+     *
+     * @param string|array $kp,... List of parameters to use in key generation
      *
      * @return string
      */
-    public function generateKey()
+    public function generateKey($kp)
     {
         $arguments = func_get_args();
 
@@ -191,7 +195,7 @@ class PHPRedis extends \Redis
      * @return boolean
      * @throws RedisCommunicationException If connection fails
      */
-    protected function _connect($bailOnError = false)
+    private function _connect($bailOnError = false)
     {
         $this->connected = $this->connect(
             $this->parameters['host'],
@@ -246,6 +250,7 @@ class PHPRedis extends \Redis
         return mb_substr(trim(strtoupper($command) . ' ' . $this->getPrefix() . implode(' ', $list)), 0, 256);
     }
 
+    // the rest is all wrapper calls to allow us to time and log calls.
 
     /**
      * {@inheritDoc}
