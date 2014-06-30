@@ -7,17 +7,17 @@
     <parameters>
         <parameter key="pdl.phpredis.class">Pompdelux\PHPRedisBundle\Client\PHPRedis</parameter>
         <parameter key="pdl.phpredis.logger.class">Pompdelux\PHPRedisBundle\Logger\Logger</parameter>
-        <parameter key="pdl.phpredis.data_collector.class">Pompdelux\PHPRedisBundle\DataCollector\PHPRedisDataCollector</parameter>>
+        <parameter key="pdl.phpredis.data_collector.class">Pompdelux\PHPRedisBundle\DataCollector\PHPRedisDataCollector</parameter>
     </parameters>
 
     <services>
-        <services id="pdl.phpredis" class="%pdl.phpredis.class%"></services>
-        <services id="pdl.phpredis.logger" class="pdl.phpredis.logger.class">
+        <service id="pdl.phpredis" class="%pdl.phpredis.class%"></service>
+        <service id="pdl.phpredis.logger" class="pdl.phpredis.logger.class">
             <argument type="service" id="logger" />
-        </services>
-        <services id="pdl.phpredis.data_collector" class="%pdl.phpredis.data_collector.class%">
+        </service>
+        <service id="pdl.phpredis.data_collector" class="%pdl.phpredis.data_collector.class%">
             <argument type="service" id="pdl.phpredis.logger" />
             <tag name="data_collector" template="PHPRedisBundle:Collector:phpredis" id="phpredis" />
-        </services>
+        </service>
     </services>
 </container>
