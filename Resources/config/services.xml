@@ -12,7 +12,7 @@
 
     <services>
         <service id="pdl.phpredis" class="%pdl.phpredis.class%"></service>
-        <service id="pdl.phpredis.logger" class="pdl.phpredis.logger.class">
+        <service id="pdl.phpredis.logger" class="%pdl.phpredis.logger.class%">
             <argument type="service" id="logger" />
         </service>
         <service id="pdl.phpredis.data_collector" class="%pdl.phpredis.data_collector.class%">
