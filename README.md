@@ -13,7 +13,7 @@ It allows you to easily create multiple clients pointing to different databases 
             // ...
             "require": {
                 // ...
-                "pompdelux/phpredis-bundle": "1.x"
+                "pompdelux/phpredis-bundle": "1.*"
             }
         }
 2. Use Composer to download and install the bundle:
