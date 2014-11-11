@@ -110,7 +110,7 @@ class PHPRedis extends \Redis
      *
      * @return boolean
      * @throws \InvalidArgumentException    If the command called does not exist
-     * @throws RedisCommunicationException If the call to redis fails
+     * @throws PHPRedisCommunicationException If the call to redis fails
      */
     public function makeCall($name, array $arguments = [])
     {
@@ -152,7 +152,7 @@ class PHPRedis extends \Redis
         }
 
         if ($isError) {
-            throw new RedisCommunicationException('Redis command failed: '.$error);
+            throw new PHPRedisCommunicationException('Redis command failed: '.$error);
         }
 
         return $result;
@@ -193,7 +193,7 @@ class PHPRedis extends \Redis
      * @param boolean $bailOnError keeps track on connection retry
      *
      * @return boolean
-     * @throws RedisCommunicationException If connection fails
+     * @throws PHPRedisCommunicationException If connection fails
      */
     private function _connect($bailOnError = false)
     {
@@ -228,7 +228,7 @@ class PHPRedis extends \Redis
             $this->logger->err('Could not connect to redis server (' . $error . ')');
         }
 
-        throw new RedisCommunicationException('Could not connect to Redis: '.$error);
+        throw new PHPRedisCommunicationException('Could not connect to Redis: '.$error);
     }
 
 
